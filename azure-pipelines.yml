@@ -34,3 +34,17 @@ steps:
     ArtifactName: 'sample'
     publishLocation: 'Container'
 
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Azuresonar'
+    scannerMode: 'Other'
+
+- task: TomcatDeployment@1
+  inputs:
+    TomcatUrl: 'http://192.168.126.131:8081/'
+    Username: 'tomcat'
+    Password: 'tomcat'
+    Warfile: 'C:\myagent\vsts-agent-win-x64-3.236.1\_work\7\s\target'
+    Context: '/deploy'
+    ServerVersion: '7OrAbove'
+
